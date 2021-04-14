@@ -1,14 +1,23 @@
 package com.wez.spring.study.entity;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
 /**
  * @Author wez
  * @Date 2021/4/5
  */
-public class Person {
+public class Person implements BeanNameAware, ApplicationContextAware {
 
 	private String id;
 
 	private String name;
+
+	private String beanName;
+
+	private ApplicationContext applicationContext;
 
 	public String getId() {
 		return id;
@@ -32,5 +41,15 @@ public class Person {
 				"id='" + id + '\'' +
 				", name='" + name + '\'' +
 				'}';
+	}
+
+	@Override
+	public void setBeanName(String beanName) {
+		this.beanName = beanName;
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
 	}
 }
